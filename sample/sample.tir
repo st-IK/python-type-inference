@@ -1,0 +1,53 @@
+typed-ir version=0.1
+source sample.py
+
+variables:
+  x: int | str
+    possible: [int, str]
+    assignment line=3: int
+    assignment line=4: str
+  ex_list: list[int | list[int | str] | str]
+    possible: [list[int | list[int | str] | str]]
+    assignment line=6: list[int | list[int | str] | str]
+  name: str
+    declared: str
+    possible: [str]
+    assignment line=8: str
+  values: list[int]
+    declared: list[int]
+    possible: [list[int]]
+    assignment line=9: list[int]
+
+functions:
+  add:
+    line: 12
+    return: float
+    arguments:
+      a: int
+      b: float
+    variables:
+      a: int
+      b: float
+      result: float
+
+  mixed:
+    line: 17
+    return: int | str
+    arguments:
+      condition: bool
+    variables:
+      condition: bool
+      value: int | str
+
+classes:
+  Example:
+    line: 24
+    attributes:
+      count: int
+    methods:
+      __init__:
+        line: 27
+        return: Unknown
+      get_name:
+        line: 30
+        return: Unknown

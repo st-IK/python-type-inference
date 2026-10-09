@@ -1,0 +1,195 @@
+format: python-typed-ir
+version: '0.1'
+source_file: sample.py
+variables:
+  x:
+    inferred_type:
+      kind: union
+      types:
+      - int
+      - str
+    possible_types:
+    - int
+    - str
+    assignments:
+    - line: 3
+      type: int
+    - line: 4
+      type: str
+  ex_list:
+    inferred_type:
+      kind: list
+      types:
+      - kind: union
+        types:
+        - int
+        - kind: list
+          types:
+          - kind: union
+            types:
+            - int
+            - str
+        - str
+    possible_types:
+    - kind: list
+      types:
+      - kind: union
+        types:
+        - int
+        - kind: list
+          types:
+          - kind: union
+            types:
+            - int
+            - str
+        - str
+    assignments:
+    - line: 6
+      type:
+        kind: list
+        types:
+        - kind: union
+          types:
+          - int
+          - kind: list
+            types:
+            - kind: union
+              types:
+              - int
+              - str
+          - str
+  name:
+    inferred_type: str
+    possible_types:
+    - str
+    assignments:
+    - line: 8
+      type: str
+      annotation: str
+    declared_type: str
+  values:
+    inferred_type:
+      kind: list
+      types:
+      - int
+    possible_types:
+    - kind: list
+      types:
+      - int
+    assignments:
+    - line: 9
+      type:
+        kind: list
+        types:
+        - int
+      annotation:
+        kind: list
+        types:
+        - int
+    declared_type:
+      kind: list
+      types:
+      - int
+functions:
+  add:
+    line: 12
+    arguments:
+      a:
+        type: int
+      b:
+        type: float
+    return_type: float
+    variables:
+      a:
+        inferred_type: int
+        possible_types: []
+        assignments: []
+        declared_type: int
+      b:
+        inferred_type: float
+        possible_types: []
+        assignments: []
+        declared_type: float
+      result:
+        inferred_type: float
+        possible_types:
+        - float
+        assignments:
+        - line: 13
+          type: float
+  mixed:
+    line: 17
+    arguments:
+      condition:
+        type: bool
+    return_type:
+      kind: union
+      types:
+      - int
+      - str
+    variables:
+      condition:
+        inferred_type: bool
+        possible_types: []
+        assignments: []
+        declared_type: bool
+      value:
+        inferred_type:
+          kind: union
+          types:
+          - int
+          - str
+        possible_types:
+        - int
+        - str
+        assignments:
+        - line: 18
+          type: int
+        - line: 20
+          type: str
+classes:
+  Example:
+    line: 24
+    bases: []
+    attributes:
+      count:
+        inferred_type: int
+        possible_types:
+        - int
+        assignments:
+        - line: 25
+          type: int
+          annotation: int
+        declared_type: int
+    methods:
+      __init__:
+        line: 27
+        arguments:
+          self:
+            type: Unknown
+          name:
+            type: str
+        return_type: Unknown
+        variables:
+          self:
+            inferred_type: Unknown
+            possible_types: []
+            assignments: []
+            declared_type: Unknown
+          name:
+            inferred_type: str
+            possible_types: []
+            assignments: []
+            declared_type: str
+      get_name:
+        line: 30
+        arguments:
+          self:
+            type: Unknown
+        return_type: Unknown
+        variables:
+          self:
+            inferred_type: Unknown
+            possible_types: []
+            assignments: []
+            declared_type: Unknown
